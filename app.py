@@ -43,8 +43,7 @@ def add():
 def update(post_id):
     posts = load_posts()
     post = next((p for p in posts if p['id'] == post_id), None)
-    if not post:
-        return "Post nicht gefunden", 404
+    if not post: return "Not found", 404
     if request.method == 'POST':
         post['author'] = request.form.get('author')
         post['title'] = request.form.get('title')
