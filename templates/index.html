@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Übersicht</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Mein Flask Blog</h1>
+    <a href="{{ url_for('add') }}">Neuen Beitrag erstellen</a>
+    <hr>
+    {% for post in posts %}
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p><em>Von {{ post.author }}</em></p>
+        <p>{{ post.content }}</p>
+        <a href="{{ url_for('update', post_id=post.id) }}">Bearbeiten</a> |
+        <a href="{{ url_for('delete', post_id=post.id) }}" onclick="return confirm('Löschen?')">Löschen</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
